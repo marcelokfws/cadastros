@@ -17,13 +17,13 @@
         <div class="card mx-auto" style="width: 18rem;">
             <img src="{{employee.photo.url}}" class="card-img-top" alt="Employee Photo">
             <div class="card-body">
-              <p class="card-text">{{employee.first_name}} {{employee.last_name}} </p>
-              <p class="card-text">{{employee.designation}} </p>
-              <p class="card-text">{{employee.email_adress}} </p>
-              <p class="card-text">{{employee.phone_number}} </p>
+              <p class="card-text">Nome: {{employee.first_name}} {{employee.last_name}} </p>
+              <p class="card-text">Reds: {{employee.reds}} </p>
+              <p class="card-text">Endereço: {{ employee.adress }}</p>
+              <p class="card-text">Telefone: {{employee.phone_number}} </p>
               
             </div>
-            <a href="{% url 'home'%}" class="btn btn-primary">Back to Home</a>
+            <a href="{% url 'home'%}" class="btn btn-primary">Voltar</a>
         </div>
           
       </div>
