@@ -25,9 +25,9 @@
     
   </nav>
 
-    
-      <div class="container pt-5">
-        <h1 class="text-center">LISTA DE INDIVÍDUOS</h1>
+      <div class="container pt-5 ">
+        <h1 class="text-center ">LISTA DE INDIVÍDUOS</h1>
+        {% if user.is_authenticated %}
         <table class="table">
             <thead>
               <tr>
@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              {% if user.is_authenticated %}
+              
             {% for employee in employees %}
               <tr>
                 <th>{{ forloop.counter }}</th>
@@ -49,6 +49,22 @@
               {% endfor %}
               {% else %}
               
+              {% comment %} <div class="container py-3 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                      <div class="card-body p-3 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                          <a href="{% url 'login' %}">
+                          <button class="btn btn-outline-light btn-lg px-5" type="submit">Página de Login</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> {% endcomment %}
+
               {% endif %}
             </tbody>
           </table>

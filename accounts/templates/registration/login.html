@@ -1,28 +1,82 @@
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
-
 {% block content %}
 
-<div class="col-md-4">
-    <form method="post">
-        {% csrf_token %}
+{% if user.is_authenticated %}
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center mt-5">
+  
+        <form action="{% url 'search' %}" class="search w-25" method="GET" >
+          <input type="text" class="form-control " placeholder="Digite o Nome" aria-label="Recipient's username" aria-describedby="basic-addon2" name="Keyword">
+          <div class="d-flex justify-content-center">
+          <button class="btn btn-sn btn-outline-success my-2 my-sm-0 w-100" type="</div>submit">Pesquisar</button>
+          </div>
+        </form>
+      
+    </nav>
+  
+        <div class="container pt-5">
+          <h1 class="text-center"><a class="text-dark" href=" {% url 'home'%}">ACESSAR LISTA DE INDIVÍDUOS</a></h1>
+            <table class="table">
+              
+              <tbody>
+                {% for employee in employees %}
+                    <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td><a href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ employee.last_name}}</a></td>
+                    <td>{{ employee.reds }}</td>
+                    <td>{{ employee.phone_number }}</td>
+                    </tr>
+                {% endfor %}
 
-        <div class="mb-3">
-            <label class="form-label" for="id_username">Usuário:</label>
-            <input type="text" name="username" class="form-control">
+              </tbody>
+            </table>
         </div>
-        
-        <div class="mb-3">
-            <label class="form-label" for="id_password">Senha:</label>
-            <input type="password" name="password" class="form-control">
+</body>
+
+  {% else %}
+
+
+<section class="vh-75 gradient-custom">
+    <div class="container py-3 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-3 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <form method="post">
+                    {% csrf_token %}
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-5">Entre com Usuário e Senha!</p>
+  
+                <div class="form-outline form-white mb-4">
+                  <input name="username" type="text"  class="form-control form-control-lg" />
+                  <label  class="form-label" for="id_username">Usuário</label>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <input type="password" name="password" class="form-control form-control-lg" />
+                  <label class="form-label" for="id_password">Senha</label>
+                </div>
+                
+                <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="{% url 'password_reset' %}">Esqueceu sua senha?</a></p>
+  
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Entrar</button>
+                </form>
+                <div class="mt-3">
+                    <p class="mb-0">Não tem conta? <a href="{% url 'register' %}" class="text-white-50 fw-bold">Registrar</a>
+                    </p>
+                  </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-
-        <button class="btn btn-warning" type="submit">Entrar</button>
-    </form>
-    
-    <a href="{% url 'password_reset' %}">Esqueci minha senha</a>
-</div>
-
-
+      </div>
+    </div>
+  </section>
+ {% endif %}
 {% endblock %}
