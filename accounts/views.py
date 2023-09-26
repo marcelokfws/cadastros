@@ -16,7 +16,7 @@ def register(request):
             user.save()
             messages.success(
                 request, 'Registrado. Agora faça o login para começar!')
-            return redirect('login')
+            return redirect('mysite')
 
         else:
             print('invalid registration details')
