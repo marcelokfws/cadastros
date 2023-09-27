@@ -20,13 +20,18 @@
 	<div class="container">   
 		
 		{% if user.is_authenticated %}
-			<h2 class="card-text fw-bold shadow-lg p-1 border border-dark ">Usuário: {{user.first_name}} {{user.last_name}} </h2>
+			
+			<h2 class="card-text fw-bold shadow-lg p-1 border border-dark ">
+				Usuário: {{user.first_name}} {{user.last_name}} 
+			</h2>
+			
 			<div class="mt-2 d-flex gap-3 align-items-center w-100">
 				{% if user.is_authenticated %}
 					<span class="nav-text fw-bold">
 						Click aqui para sair
 					</span>
 					<a class="btn btn-outline-danger" href="{% url 'logout' %}">Sair</a>
+			
 				{% else %}
 					<a class="btn btn-outline-primary" href="{% url 'login' %}">Entrar</a>
 					<a class="btn btn-success" href="{% url 'register' %}">Registrar</a>

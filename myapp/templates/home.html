@@ -14,24 +14,28 @@
 </head>
 <body>
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center mt-5">
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center mt-5 border rounded">
+    
       <form action="{% url 'search' %}" class="search w-25" method="GET" >
         <input type="text" class="form-control " placeholder="Digite o Nome" aria-label="Recipient's username" aria-describedby="basic-addon2" name="Keyword">
         <div class="d-flex justify-content-center">
-        <button class="btn btn-sn btn-outline-success my-2 my-sm-0 w-100" type="</div>submit">Pesquisar</button>
+        <button class="btn btn-sn btn-outline-success my-2 my-sm-0 w-100 fw-bold" type="submit">Pesquisar</button>
         </div>
       </form>
-    
+      
   </nav>
+        
 
-      <div class="container pt-5 ">
+      <div class="container pt-3 ">
         <h1 class="text-center ">LISTA DE INDIVÍDUOS</h1>
+        <a class="text-dark d-flex justify-content-center" href="{% url 'home'%}">
+					<button class="btn btn-outline-dark btn-lg px-5 fw-bold">Página Inicial</button>
+				</a>
         {% if user.is_authenticated %}
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">Nº</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Reds</th>
                 <th scope="col">Telefone</th>
@@ -41,10 +45,12 @@
               
             {% for employee in employees %}
               <tr>
-                <th>{{ forloop.counter }}</th>
-                <td><a href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ employee.last_name}}</a></td>
-                <td>{{ employee.reds }}</td>
-                <td>{{ employee.phone_number }}</td>
+              
+                <th>{{ forloop.counter }}</p></th>
+                <td><a class="btn btn-outline-success fw-bold px-4 d-flex" href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ employee.last_name}}</a></td>
+                <td><p class="btn btn-outline-dark px-4 d-flex fw-bold">{{ employee.reds }}</p></td>
+                <td><p class="btn btn-outline-dark px-4 d-flex fw-bold">{{ employee.phone_number }}</p></td>
+                
               </tr>
               {% endfor %}
               {% else %}
