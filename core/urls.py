@@ -13,6 +13,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('search/', views.search, name='search'),
     path('employees/', include('employees.urls')),
+    path('', include('myapp.urls'))
 
 ]
 urlpatterns += static(settings.STATIC_URL,

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="vh-75 gradient-custom">
+    <div class="container py-3 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-3 text-center">
+              {% if user.is_authenticated %}
+              <div class="mb-md-1 mt-md-3 pb-3">
+                <a href="{%url 'home'%}" class="btn btn-outline-light btn-lg px-5 mb-3" type="submit">Início</a>
+                
+                <form  action="{% url 'add_cadastro'%}" method="POST" enctype="multipart/form-data"> 
+                    {% csrf_token %} 
+                    
+                <h2 class="fw-bold mb-2 text-uppercase mb-3">Adicionar Cadastro</h2>
+            
+                  <label>Foto</label>
+                    <div class="form-control form-control-lg mb-3">
+                        {{form.photo}}
+                    </div>
+                  
+                    <label>Nome</label>
+                    <div class="form-control form-control-lg mb-3">
+                        {{form.first_name}}
+                    </div>
+
+                    <label>Sobrenome</label>
+                    <div class="form-control form-control-lg mb-3">
+                        {{form.last_name}}
+                    </div>
+
+                    <label>Reds</label>
+                    <div class="form-control form-control-lg mb-3">
+                        {{form.reds}}
+                    </div>
+                
+                    <label>Endereço</label>
+                    <div class="form-control form-control-lg mb-3">
+                        {{form.adress}}
+                    </div>
+                
+                    <button type="submit" class="btn btn-outline-light btn-lg px-5"><i class="fa fa-check" aria-hidden="true"></i>Salvar</button>
+                
+                </form>
+                
+                {% else %}
+                <div class="container py-3 h-100">
+                  <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                      <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-3 text-center">
+                          <div class="mb-md-5 mt-md-4 pb-5">
+                            <a href="{% url 'login' %}">
+                            <button class="btn btn-outline-light btn-lg px-4 fw-bold" type="submit">Faça Login para Cadastrar</button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+{% endblock content %}

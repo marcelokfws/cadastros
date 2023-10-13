@@ -1,6 +1,8 @@
-from django.db.models import Q
-from django.shortcuts import render
 
+from django.db.models import Q
+from django.shortcuts import redirect, render
+
+from employees.forms import addCadastro
 from employees.models import Employee
 
 
@@ -20,3 +22,18 @@ def search(request):
     context = {
         'employees': employees}
     return render(request, 'home.html', context)
+
+
+def add_cadastro(request):
+    form = None
+    if request.method == 'POST':
+        form = addCadastro(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            form.save()
+            print('Form not valid')
+            return redirect('home')
+        print('Form not valid')
+    else:
+        form = addCadastro()
+    return render(request, 'add_cadastro.html', {'form': form})

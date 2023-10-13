@@ -10,3 +10,4 @@ def employee_detail(request, pk):
         'employee': employee
     }
     return render(request, 'employee_detail.html', context)
+

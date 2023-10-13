@@ -28,17 +28,22 @@
 
       <div class="container pt-3 ">
         <h1 class="text-center ">LISTA DE INDIVÍDUOS</h1>
-        <a class="text-dark d-flex justify-content-center" href="{% url 'home'%}">
-					<button class="btn btn-outline-dark btn-lg px-5 fw-bold">Página Inicial</button>
+        <div class="d-flex justify-content-center ">
+        <a class="text-dark d-flex justify-content-end" href="{% url 'home'%}">
+					<button class="btn btn-outline-dark btn-lg px-5 fw-bold">Início</button>
 				</a>
+        <a class="text-dark d-flex justify-content-start" href="{% url 'add_cadastro'%}">
+					<button class="btn btn-outline-dark btn-lg px-5 fw-bold">Cadastrar</button>
+				</a></div>
+
         {% if user.is_authenticated %}
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">Nº</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Reds</th>
-                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -46,14 +51,13 @@
             {% for employee in employees %}
               <tr>
               
-                <th>{{ forloop.counter }}</p></th>
-                <td><a class="btn btn-outline-success fw-bold px-4 d-flex" href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ employee.last_name}}</a></td>
-                <td><p class="btn btn-outline-dark px-4 d-flex fw-bold">{{ employee.reds }}</p></td>
-                <td><p class="btn btn-outline-dark px-4 d-flex fw-bold">{{ employee.phone_number }}</p></td>
+                <th><p class="btn btn-outline-dark px-4 d-flex fw-bold">{{ forloop.counter }}</p></th>
+                <td><a class="btn btn-outline-success px-4 d-flex fw-bold" href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ employee.last_name}}</a></td>
+                <td><a class="btn btn-outline-dark px-4 d-flex fw-bold">{{employee.adress}}</a></td>
                 
               </tr>
               {% endfor %}
-              {% else %}
+        {% else %}
               
               <div class="container py-3 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
